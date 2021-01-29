@@ -50,6 +50,7 @@ import org.chromium.base.ContextUtils;
 import org.chromium.base.Log;
 import org.chromium.base.MathUtils;
 import org.chromium.base.ThreadUtils;
+import org.chromium.base.supplier.BooleanSupplier;
 import org.chromium.base.task.AsyncTask;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.BraveAdsNativeHelper;
@@ -93,6 +94,7 @@ import org.chromium.chrome.browser.tab.TabSelectionType;
 import org.chromium.chrome.browser.tabmodel.TabModelSelector;
 import org.chromium.chrome.browser.tabmodel.TabModelSelectorTabModelObserver;
 import org.chromium.chrome.browser.tabmodel.TabModelSelectorTabObserver;
+import org.chromium.chrome.browser.theme.ThemeUtils;
 import org.chromium.chrome.browser.toolbar.HomeButton;
 import org.chromium.chrome.browser.toolbar.ToolbarColors;
 import org.chromium.chrome.browser.toolbar.ToolbarDataProvider;
@@ -1101,7 +1103,7 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
 
     @Override
     public void onThemeColorChanged(int color, boolean shouldAnimate) {
-        final int textBoxColor = ToolbarColors.getTextBoxColorForToolbarBackgroundInNonNativePage(
+        final int textBoxColor = ThemeUtils.getTextBoxColorForToolbarBackgroundInNonNativePage(
                 getResources(), color, isIncognito());
         updateModernLocationBarColor(textBoxColor);
     }
@@ -1174,8 +1176,9 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
 
     @Override
     protected void initialize(ToolbarDataProvider toolbarDataProvider,
-            ToolbarTabController tabController, MenuButtonCoordinator menuButtonCoordinator) {
-        super.initialize(toolbarDataProvider, tabController, menuButtonCoordinator);
+            ToolbarTabController tabController, MenuButtonCoordinator menuButtonCoordinator,
+            BooleanSupplier isInVrSupplier) {
+        super.initialize(toolbarDataProvider, tabController, menuButtonCoordinator, isInVrSupplier);
         BraveMenuButtonCoordinator.setMenuFromBottom(isMenuButtonOnBottom());
     }
 
