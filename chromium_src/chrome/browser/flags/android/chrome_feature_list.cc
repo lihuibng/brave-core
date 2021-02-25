@@ -3,17 +3,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+#include "chrome/browser/flags/android/chrome_feature_list.h"
+
 #include "brave/common/brave_features.h"
 #include "third_party/blink/public/common/features.h"
 
 namespace chrome {
 namespace android {
 
+extern const base::Feature kTabGroupsAndroidDummy;
+
 namespace {
 
 const base::Feature* kBraveFeaturesExposedToJava[] = {
     &features::kBraveRewards,
     &blink::features::kForceWebContentsDarkMode,
+    &kTabGroupsAndroid,
 };
 
 const base::Feature* BraveFindFeatureExposedToJava(
@@ -36,5 +41,16 @@ const base::Feature* BraveFindFeatureExposedToJava(
   if (feature)                                                                \
     return feature;
 
+#define kTabGroupsAndroid kTabGroupsAndroidDummy
 #include "../../../../../../chrome/browser/flags/android/chrome_feature_list.cc"
+#undef kTabGroupsAndroid
 #undef BRAVE_FIND_FEATURE_EXPOSED_TO_JAVA
+
+namespace chrome {
+namespace android {
+
+const base::Feature kTabGroupsAndroid{"TabGroupsAndroid",
+                                      base::FEATURE_DISABLED_BY_DEFAULT};
+
+}  // namespace android
+}  // namespace chrome
