@@ -1,15 +1,26 @@
 source_set("permissions") {
   sources = [
+    "permission_lifetime_manager.cc",
+    "permission_lifetime_manager.h",
     "permission_lifetime_options.cc",
     "permission_lifetime_options.h",
+    "permission_lifetime_pref_names.cc",
+    "permission_lifetime_pref_names.h",
     "permission_lifetime_utils.cc",
     "permission_lifetime_utils.h",
   ]
 
   deps = [
     "//base",
+    "//base/util/timer",
     "//brave/components/resources:strings_grit",
+    "//components/content_settings/core/browser",
+    "//components/content_settings/core/common",
+    "//components/keyed_service/core",
     "//components/permissions",
+    "//components/pref_registry",
+    "//services/preferences/public/cpp",
     "//ui/base",
+    "//url",
   ]
 }
