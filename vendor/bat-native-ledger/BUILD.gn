@@ -143,6 +143,8 @@ source_set("ledger") {
     "src/bat/ledger/internal/core/bat_ledger_context.cc",
     "src/bat/ledger/internal/core/bat_ledger_context.h",
     "src/bat/ledger/internal/core/bat_ledger_task.h",
+    "src/bat/ledger/internal/core/sql_store.cc",
+    "src/bat/ledger/internal/core/sql_store.h",
     "src/bat/ledger/internal/credentials/credentials.h",
     "src/bat/ledger/internal/credentials/credentials_common.cc",
     "src/bat/ledger/internal/credentials/credentials_common.h",
