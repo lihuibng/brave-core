@@ -266,7 +266,7 @@
     "@types/redux-logger": "3.0.8",
     "acorn": "8.0.5",
     "babel-loader": "8.2.2",
-    "brave-ui": "github:brave/brave-ui#9727652a47f014c70cda71520bb7f847bd48a4f2",
+    "brave-ui": "github:brave/brave-ui#cf2b95b0746d74a7c7f5e8e1c6bd077d7fb3c8a1",
     "chalk": "4.1.0",
     "commander": "2.20.3",
     "css-loader": "2.1.1",
