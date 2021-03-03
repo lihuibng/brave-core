@@ -18,6 +18,7 @@
 #include "brave/browser/themes/brave_dark_mode_utils.h"
 #include "brave/browser/ui/brave_browser_command_controller.h"
 #include "brave/common/pref_names.h"
+#include "brave/components/brave_ads/browser/buildflags/buildflags.h"
 #include "brave/components/brave_component_updater/browser/brave_on_demand_updater.h"
 #include "brave/components/brave_component_updater/browser/local_data_files_service.h"
 #include "brave/components/brave_shields/browser/ad_block_custom_filters_service.h"
