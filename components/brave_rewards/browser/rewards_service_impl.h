@@ -20,9 +20,12 @@
 #include "base/memory/weak_ptr.h"
 #include "base/observer_list.h"
 #include "base/one_shot_event.h"
+#include "base/sequence_checker.h"
+#include "base/task/cancelable_task_tracker.h"
 #include "base/values.h"
 #include "bat/ledger/ledger.h"
 #include "bat/ledger/ledger_client.h"
+#include "brave/components/brave_rewards/browser/file_util.h"
 #include "brave/components/brave_rewards/browser/rewards_service.h"
 #include "brave/components/brave_rewards/browser/rewards_service_private_observer.h"
 #include "brave/components/greaselion/browser/buildflags/buildflags.h"
@@ -380,8 +383,6 @@ class RewardsServiceImpl : public RewardsService,
 
   void Reset();
 
-  bool ResetOnFilesTaskRunner();
-
   void OnCreate(StartProcessCallback callback);
 
   void OnResult(
@@ -577,22 +578,11 @@ class RewardsServiceImpl : public RewardsService,
       SavePublisherInfoCallback callback,
       const ledger::type::Result result);
 
-  bool MaybeTailDiagnosticLog(
-      const int num_lines);
-
   void DiagnosticLog(
       const std::string& file,
       const int line,
       const int verbose_level,
       const std::string& message) override;
-
-  bool WriteToDiagnosticLogOnFileTaskRunner(
-      const base::FilePath& log_path,
-      const int num_lines,
-      const std::string& file,
-      const int line,
-      const int verbose_level,
-      const std::string& message);
 
   void OnWriteToLogOnFileTaskRunner(
     const bool success);
@@ -601,24 +591,15 @@ class RewardsServiceImpl : public RewardsService,
       const int num_lines,
       LoadDiagnosticLogCallback callback) override;
 
-  std::string LoadDiagnosticLogOnFileTaskRunner(
-      const base::FilePath& path,
-      const int num_lines);
-
-  void OnLoadDiagnosticLogOnFileTaskRunner(
-      LoadDiagnosticLogCallback callback,
-      const std::string& value);
+  void OnDiagnosticLogLoaded(LoadDiagnosticLogCallback callback,
+                             const std::string& value);
 
   void ClearDiagnosticLog(ClearDiagnosticLogCallback callback) override;
 
   void CompleteReset(SuccessCallback callback) override;
 
-  bool ClearDiagnosticLogOnFileTaskRunner(
-      const base::FilePath& path);
-
-  void OnClearDiagnosticLogOnFileTaskRunner(
-      ClearDiagnosticLogCallback callback,
-      const bool success);
+  void OnDiagnosticLogCleared(ClearDiagnosticLogCallback callback,
+                              const bool success);
 
   void Log(
       const char* file,
@@ -748,15 +729,14 @@ class RewardsServiceImpl : public RewardsService,
       GetAllPromotionsCallback callback,
       base::flat_map<std::string, ledger::type::PromotionPtr> promotions);
 
-  void OnCompleteReset(SuccessCallback callback, const bool success);
+  void OnFilesDeletedForReset(SuccessCallback callback, const bool success);
 
   void OnCompleteResetProcess(
       SuccessCallback callback,
       const ledger::type::Result result);
 
-  bool DeleteLogTaskRunner();
-
-  void OnDeleteLog(ledger::ResultCallback callback, const bool success);
+  void OnDiagnosticLogDeleted(ledger::ResultCallback callback,
+                              const bool success);
 
   void OnGetEventLogs(
       GetEventLogsCallback callback,
@@ -783,8 +763,12 @@ class RewardsServiceImpl : public RewardsService,
   mojo::AssociatedRemote<bat_ledger::mojom::BatLedger> bat_ledger_;
   mojo::Remote<bat_ledger::mojom::BatLedgerService> bat_ledger_service_;
   const scoped_refptr<base::SequencedTaskRunner> file_task_runner_;
+  base::CancelableTaskTracker cancelable_task_tracker_;
+
+  // Note: Only access |diagnostic_log_| from the file task runner.
+  WeakWrapperFile diagnostic_log_;
+
   const base::FilePath diagnostic_log_path_;
-  base::File diagnostic_log_;
   const base::FilePath ledger_state_path_;
   const base::FilePath publisher_state_path_;
   const base::FilePath publisher_info_db_path_;
@@ -812,6 +796,7 @@ class RewardsServiceImpl : public RewardsService,
 
   GetTestResponseCallback test_response_callback_;
 
+  SEQUENCE_CHECKER(sequence_checker_);
   DISALLOW_COPY_AND_ASSIGN(RewardsServiceImpl);
 };
 
