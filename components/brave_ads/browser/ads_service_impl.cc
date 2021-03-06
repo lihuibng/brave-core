@@ -88,6 +88,9 @@
 #include "ui/base/resource/resource_bundle.h"
 #include "ui/message_center/public/cpp/notification.h"
 
+#include "chrome/browser/history/history_service_factory.h"
+#include "components/history/core/browser/history_service.h"
+
 #if defined(OS_ANDROID)
 #include "brave/browser/notifications/brave_notification_platform_bridge_helper_android.h"
 #include "chrome/browser/android/service_tab_launcher.h"
@@ -310,6 +313,9 @@ void AdsServiceImpl::OnTextLoaded(const SessionID& tab_id,
   if (!connected()) {
     return;
   }
+
+  SearchBrowsingHistoryForProfile();
+  VLOG(6) << "*** FOOBAR: OnTextLoaded";
 
   std::vector<std::string> redirect_chain_as_strings;
   for (const auto& url : redirect_chain) {
@@ -1103,6 +1109,29 @@ void AdsServiceImpl::NotificationTimedOut(const std::string& uuid) {
   }
 
   CloseNotification(uuid);
+}
+
+void AdsServiceImpl::SearchBrowsingHistoryForProfile() {
+  history::HistoryService* history_service =
+      HistoryServiceFactory::GetForProfile(profile_,
+      ServiceAccessType::EXPLICIT_ACCESS);
+
+  base::string16 search_text;
+  history::QueryOptions options;
+  history_service->QueryHistory(search_text, options,
+      base::BindOnce(&AdsServiceImpl::OnBrowsingHistorySearchComplete,
+                    base::Unretained(this)),
+      &task_tracker_);
+}
+
+void AdsServiceImpl::OnBrowsingHistorySearchComplete(
+    history::QueryResults results) {
+  VLOG(6) << "*** FOOBAR: OnBrowsingHistorySearchComplete"
+          << " results: " << results.size();
+  for (const auto& result : results) {
+    // TODO(Moritz Haller): aggregate over eTLD+1 in query or here?
+    VLOG(6) << "    " << result.url().host() << " " << result.visit_count();
+  }
 }
 
 void AdsServiceImpl::RegisterUserModelComponentsForLocale(
