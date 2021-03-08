@@ -104,9 +104,6 @@
   <message name="IDS_OMNIBOX_PEDAL_CLEAR_BROWSING_DATA_HINT" desc="The button text contents to suggest pedal action, clear browsing data.">
     Clear browsing data
   </message>
-  <message name="IDS_OMNIBOX_PEDAL_CLEAR_BROWSING_DATA_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, clear browsing data.">
-    Clear
-  </message>
   <message name="IDS_OMNIBOX_PEDAL_CLEAR_BROWSING_DATA_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, clear browsing data.">
     Clear your browsing history, cookies, cache, and more in Brave settings
   </message>
@@ -119,9 +116,6 @@
 
   <message name="IDS_OMNIBOX_PEDAL_MANAGE_PASSWORDS_HINT" desc="The button text contents to suggest pedal action, manage passwords.">
     Manage passwords
-  </message>
-  <message name="IDS_OMNIBOX_PEDAL_MANAGE_PASSWORDS_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, change language.">
-    Manage
   </message>
   <message name="IDS_OMNIBOX_PEDAL_MANAGE_PASSWORDS_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, change language.">
     View and manage your passwords in Brave settings
@@ -136,9 +130,6 @@
   <message name="IDS_OMNIBOX_PEDAL_UPDATE_CREDIT_CARD_HINT" desc="The button text contents to suggest pedal action, update credit card.">
     Manage payment methods
   </message>
-  <message name="IDS_OMNIBOX_PEDAL_UPDATE_CREDIT_CARD_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, update credit card.">
-    Manage
-  </message>
   <message name="IDS_OMNIBOX_PEDAL_UPDATE_CREDIT_CARD_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, update credit card.">
     Manage your payments and credit card info in Brave settings
   </message>
@@ -151,9 +142,6 @@
 
   <message name="IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT" desc="The button text contents to suggest pedal action, launch private.">
     Open Private window
-  </message>
-  <message name="IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, launch private.">
-    Open
   </message>
   <message name="IDS_OMNIBOX_PEDAL_LAUNCH_INCOGNITO_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, launch private.">
     Open a new Private window to browse privately
@@ -168,9 +156,6 @@
   <message name="IDS_OMNIBOX_PEDAL_TRANSLATE_HINT" desc="The button text contents to suggest pedal action, translate.">
     Translate page
   </message>
-  <message name="IDS_OMNIBOX_PEDAL_TRANSLATE_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, translate.">
-    Translate
-  </message>
   <message name="IDS_OMNIBOX_PEDAL_TRANSLATE_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, translate.">
     Translate this page with Brave Translate
   </message>
@@ -184,9 +169,6 @@
   <message name="IDS_OMNIBOX_PEDAL_UPDATE_CHROME_HINT" desc="The button text contents to suggest pedal action, update chrome.">
     Update Brave
   </message>
-  <message name="IDS_OMNIBOX_PEDAL_UPDATE_CHROME_HINT_SHORT" desc="The short one-word button text contents to suggest pedal action, update chrome.">
-    Update
-  </message>
   <message name="IDS_OMNIBOX_PEDAL_UPDATE_CHROME_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, update chrome.">
     Update Brave from your Brave settings
   </message>
@@ -195,6 +177,19 @@
   </message>
   <message name="IDS_ACC_OMNIBOX_PEDAL_UPDATE_CHROME" desc="Announcement when update chrome pedal button is focused.">
     Update Brave button, press Enter to update Brave from your Brave settings
+  </message>
+
+  <message name="IDS_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_HINT" desc="The button text contents to suggest pedal action, run Brave Safety Check.">
+    Run Brave Safety Check
+  </message>
+  <message name="IDS_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_SUGGESTION_CONTENTS" desc="The suggestion content text to suggest pedal action, run Brave Safety Check.">
+    Run a Safety Check in Brave settings
+  </message>
+  <message name="IDS_ACC_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK_SUFFIX" desc="Suffix for spoken suggestion description with run Brave Safety Check pedal action to explain keystroke used to run Brave Safety Check.">
+    <ph name="RUN_CHROME_SAFETY_CHECK_FOCUSED_FRIENDLY_MATCH_TEXT">$1<ex>The Brave Projects http://www.chromium.org bookmark</ex></ph>, press Tab then Enter to run Safety Check in Brave settings
+  </message>
+  <message name="IDS_ACC_OMNIBOX_PEDAL_RUN_CHROME_SAFETY_CHECK" desc="Announcement when the Run Brave Safety Check pedal button is focused.">
+    Run Brave Safety Check button, press Enter to run Safety Check in Brave settings
   </message>
 
   <!-- Accessibility labels for autocomplete match types.
