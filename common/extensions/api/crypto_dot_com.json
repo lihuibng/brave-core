@@ -192,6 +192,128 @@
             ]
           }
         ]
+      },
+      {
+        "name": "getAccountBalances",
+        "type": "function",
+        "description": "Retrieves user asset balances",
+        "parameters": [
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "balances",
+                "type": "any"
+              },
+              {
+                "name": "success",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "getClientUrl",
+        "type": "function",
+        "description": "Retrieves crypto.com auth client url",
+        "parameters": [
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "url",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "isConnected",
+        "type": "function",
+        "description": "Check access token is valid or not",
+        "parameters": [
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "connected",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "getNewsEvents",
+        "type": "function",
+        "description": "Get latest news events",
+        "parameters": [
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "events",
+                "type": "any"
+              },
+              {
+                "name": "success",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "getDepositAddress",
+        "type": "function",
+        "description": "Retrieves deposit address",
+        "parameters": [
+          {
+            "name": "asset",
+            "type": "string"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "parameters": [
+              {
+                "name": "data",
+                "type": "any"
+              },
+              {
+                "name": "success",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "createMarketOrder",
+        "type": "function",
+        "description": "Create market order for buy/sell",
+        "parameters": [
+          {
+            "name": "order",
+            "type": "any"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "parameters": [
+              {
+                "name": "success",
+                "type": "boolean"
+              }
+            ]
+          }
+        ]
       }
     ],
     "types": [

@@ -14,6 +14,7 @@ void RegisterPrefs(PrefRegistrySimple* registry) {
   registry->RegisterBooleanPref(kCryptoDotComNewTabPageShowCryptoDotCom, true);
   registry->RegisterBooleanPref(kCryptoDotComHasBoughtCrypto, false);
   registry->RegisterBooleanPref(kCryptoDotComHasInteracted, false);
+  registry->RegisterStringPref(kCryptoDotComAccessToken, "");
 }
 
 }  // namespace crypto_dot_com

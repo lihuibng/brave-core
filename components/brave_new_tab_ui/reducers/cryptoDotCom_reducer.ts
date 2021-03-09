@@ -87,6 +87,14 @@ const cryptoDotComReducer: Reducer<NewTab.State | undefined> = (state: NewTab.St
           ...state.cryptoDotComState.charts,
           ...payload.charts
         },
+        tickerPrices: {
+          ...state.cryptoDotComState.tickerPrices,
+          ...payload.tickerPrices
+        },
+        depositAddresses: {
+          ...state.cryptoDotComState.depositAddresses,
+          ...payload.depositAddress
+        },
         supportedPairs: reducePairs(payload.pairs) || {},
         tradingPairs: payload.pairs
       }
@@ -113,7 +121,10 @@ const cryptoDotComReducer: Reducer<NewTab.State | undefined> = (state: NewTab.St
           ...state.cryptoDotComState.charts,
           ...payload.charts
         },
+        newsEvents: payload.newsEvents,
         losersGainers: payload.losersGainers,
+        isConnected: payload.isConnected,
+        accountBalances: payload.accountBalances,
         supportedPairs: payload.pairs ? reducePairs(payload.pairs) : state.cryptoDotComState.supportedPairs,
         tradingPairs: payload.pairs ? payload.pairs : state.cryptoDotComState.tradingPairs
       }

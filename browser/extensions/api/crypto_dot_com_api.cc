@@ -9,6 +9,7 @@
 #include <string>
 #include <utility>
 
+#include "base/values.h"
 #include "brave/browser/profiles/profile_util.h"
 #include "brave/common/extensions/api/crypto_dot_com.h"
 #include "brave/browser/crypto_dot_com/crypto_dot_com_service_factory.h"
@@ -247,6 +248,136 @@ CryptoDotComGetInteractionsFunction::Run() {
   interactions.SetBoolean("interacted", has_interacted);
 
   return RespondNow(OneArgument(std::move(interactions)));
+}
+
+ExtensionFunction::ResponseAction
+CryptoDotComGetAccountBalancesFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  auto* service = GetCryptoDotComService(browser_context());
+  bool ret = service->GetAccountBalances(
+      base::BindOnce(
+          &CryptoDotComGetAccountBalancesFunction::OnGetAccountBalancesResult,
+          this));
+
+  if (!ret) {
+    return RespondNow(
+        Error("Could not make request for getting account balances"));
+  }
+
+  return RespondLater();
+}
+
+void CryptoDotComGetAccountBalancesFunction::OnGetAccountBalancesResult(
+    base::Value balances, bool success) {
+  Respond(TwoArguments(std::move(balances), base::Value(success)));
+}
+
+ExtensionFunction::ResponseAction CryptoDotComGetClientUrlFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  auto* service = GetCryptoDotComService(browser_context());
+  return RespondNow(OneArgument(base::Value(service->GetAuthClientUrl())));
+}
+
+ExtensionFunction::ResponseAction CryptoDotComIsConnectedFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  auto* service = GetCryptoDotComService(browser_context());
+  bool ret = service->IsConnected(base::BindOnce(
+      &CryptoDotComIsConnectedFunction::OnIsConnectedResult, this));
+
+  if (!ret) {
+    return RespondNow(
+        Error("Could not make request for checking connect status"));
+  }
+
+  return RespondLater();
+}
+
+void CryptoDotComIsConnectedFunction::OnIsConnectedResult(
+    bool connected) {
+  Respond(OneArgument(base::Value(connected)));
+}
+
+ExtensionFunction::ResponseAction CryptoDotComGetNewsEventsFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  auto* service = GetCryptoDotComService(browser_context());
+  bool ret = service->GetNewsEvents(base::BindOnce(
+      &CryptoDotComGetNewsEventsFunction::OnGetNewsEventsResult, this));
+
+  if (!ret) {
+    return RespondNow(
+        Error("Could not make request for fetching news events"));
+  }
+
+  return RespondLater();
+}
+
+void CryptoDotComGetNewsEventsFunction::OnGetNewsEventsResult(
+    base::Value events, bool success) {
+  Respond(TwoArguments(std::move(events), base::Value(success)));
+}
+
+ExtensionFunction::ResponseAction CryptoDotComGetDepositAddressFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  std::unique_ptr<crypto_dot_com::GetDepositAddress::Params> params(
+      crypto_dot_com::GetDepositAddress::Params::Create(*args_));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+
+  auto* service = GetCryptoDotComService(browser_context());
+  bool ret = service->GetDepositAddress(params->asset, base::BindOnce(
+      &CryptoDotComGetDepositAddressFunction::OnGetDepositAddressResult, this));
+
+  if (!ret) {
+    return RespondNow(
+        Error("Could not make request for getting deposit address"));
+  }
+
+  return RespondLater();
+}
+
+void CryptoDotComGetDepositAddressFunction::OnGetDepositAddressResult(
+    base::Value address, bool success) {
+  Respond(TwoArguments(std::move(address), base::Value(success)));
+}
+
+ExtensionFunction::ResponseAction CryptoDotComCreateMarketOrderFunction::Run() {
+  if (!IsCryptoDotComAPIAvailable(browser_context())) {
+    return RespondNow(Error("Not available in Tor/incognito/guest profile"));
+  }
+
+  std::unique_ptr<crypto_dot_com::CreateMarketOrder::Params> params(
+      crypto_dot_com::CreateMarketOrder::Params::Create(*args_));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+
+  auto* service = GetCryptoDotComService(browser_context());
+  bool ret = service->CreateMarketOrder(params->order->Clone(), base::BindOnce(
+      &CryptoDotComCreateMarketOrderFunction::OnCreateMarketOrderResult, this));
+
+  if (!ret) {
+    return RespondNow(
+        Error("Could not make request for creating market order"));
+  }
+
+  return RespondLater();
+}
+
+void CryptoDotComCreateMarketOrderFunction::OnCreateMarketOrderResult(
+    bool success) {
+  Respond(OneArgument(base::Value(success)));
 }
 
 }  // namespace api

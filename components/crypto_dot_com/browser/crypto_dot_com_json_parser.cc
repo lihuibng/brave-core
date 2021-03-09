@@ -12,6 +12,15 @@
 #include "base/strings/string_number_conversions.h"
 #include "base/values.h"
 
+// template <typename T>
+// std::string to_string_with_precision(const T a_value, const int n = 6)
+// {
+//     std::ostringstream out;
+//     out.precision(n);
+//     out << std::fixed << a_value;
+//     return out.str();
+// }
+
 void CryptoDotComJSONParser::CalculateAssetVolume(
     const double v,
     const double h,
@@ -39,11 +48,13 @@ bool CryptoDotComJSONParser::GetTickerInfoFromJSON(
     return false;
   }
 
+  // const base::Value* data = records_v->FindPath("response.result.data");
   const base::Value* response = records_v->FindKey("response");
   const base::Value* result = response->FindKey("result");
   const base::Value* data = result->FindKey("data");
 
   if (!response || !result || !data) {
+  // if (!data) {
     // Empty values on failed response
     info->insert({"volume", std::string()});
     info->insert({"price", std::string()});
@@ -55,10 +66,11 @@ bool CryptoDotComJSONParser::GetTickerInfoFromJSON(
   const base::Value* l = data->FindKey("l");
   const base::Value* price = data->FindKey("a");
 
-  if (!(v && v->is_double()) ||
-      !(h && h->is_double()) ||
-      !(l && l->is_double()) ||
-      !(price && price->is_double())) {
+  // Number could be double or int.
+  if (!(v && (v->is_double() || v->is_int())) ||
+      !(h && (h->is_double() || h->is_int())) ||
+      !(l && (l->is_double() || l->is_int())) ||
+      !(price && (price->is_double() || price->is_int()))) {
     info->insert({"volume", std::string()});
     info->insert({"price", std::string()});
     return false;
@@ -68,6 +80,11 @@ bool CryptoDotComJSONParser::GetTickerInfoFromJSON(
   CalculateAssetVolume(
       v->GetDouble(), h->GetDouble(), l->GetDouble(), &volume);
 
+  // TODO(simonhong): After converting to string, double value seems lost
+  // its precision. Fix it.
+  // LOG(ERROR) << __func__ << " #### " << *data->FindStringKey("i");
+  // LOG(ERROR) << __func__ << " #### " << price->GetDouble();
+  // LOG(ERROR) << __func__ << " #### " << std::to_string(price->GetDouble());
   info->insert({"volume", volume});
   info->insert({"price", std::to_string(price->GetDouble())});
 
@@ -127,6 +144,8 @@ bool CryptoDotComJSONParser::GetChartDataFromJSON(
       break;
     }
 
+    // TODO(simonhong): After converting to string, double value seems lost
+    // its precision. Fix it.
     data_point.insert({"t", std::to_string(t->GetDouble())});
     data_point.insert({"o", std::to_string(o->GetDouble())});
     data_point.insert({"h", std::to_string(h->GetDouble())});

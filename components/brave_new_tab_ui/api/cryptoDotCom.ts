@@ -21,7 +21,7 @@ function getCryptoDotComAssetRankings () {
 
 function getCryptoDotComChartData (asset: string) {
   return new Promise((resolve: Function) => {
-    chrome.cryptoDotCom.getChartData(`${asset}_USDT`, (resp: any) => {
+    chrome.cryptoDotCom.getChartData(asset, (resp: any) => {
       resolve({ [asset]: resp })
     })
   })
@@ -31,6 +31,41 @@ function getCryptoDotComSupportedPairs () {
   return new Promise((resolve: Function) => {
     chrome.cryptoDotCom.getSupportedPairs((resp: any) => {
       resolve(resp)
+    })
+  })
+}
+
+function getCryptoDotComConnectStatus () {
+  return new Promise((resolve: Function) => {
+    chrome.cryptoDotCom.isConnected((connected: boolean) => {
+      resolve(connected)
+    })
+  })
+}
+
+function getCryptoDotComAccountBalances () {
+  return new Promise((resolve: Function) => {
+    // TODO(simonhong): Handle success state.
+    chrome.cryptoDotCom.getAccountBalances((balance: any, success: boolean) => {
+      resolve(balance)
+    })
+  })
+}
+
+function getCryptoDotComNewsEvents () {
+  return new Promise((resolve: Function) => {
+    // TODO(simonhong): Handle success state.
+    chrome.cryptoDotCom.getNewsEvents((newsEvents: Array<any>, success: boolean) => {
+      resolve(newsEvents)
+    })
+  })
+}
+
+function getCryptoDotComDepositAddress (asset: string) {
+  return new Promise((resolve: Function) => {
+    // TODO(simonhong): Handle success state.
+    chrome.cryptoDotCom.getDepositAddress(asset, (address: any, success: boolean) => {
+      resolve(address)
     })
   })
 }
@@ -53,4 +88,20 @@ export async function fetchCryptoDotComCharts (assets: string[]) {
 
 export async function fetchCryptoDotComSupportedPairs () {
   return getCryptoDotComSupportedPairs().then((resp: any) => resp)
+}
+
+export async function fetchCryptoDotComConnectStatus () {
+  return getCryptoDotComConnectStatus().then((connected: boolean) => connected)
+}
+
+export async function fetchCryptoDotComAccountBalances () {
+  return getCryptoDotComAccountBalances().then((balance: any) => balance)
+}
+
+export async function fetchCryptoDotComDepositAddress (asset: string) {
+  return getCryptoDotComDepositAddress(asset).then((address: any) => address)
+}
+
+export async function fetchCryptoDotComNewsEvents () {
+  return getCryptoDotComNewsEvents().then((newsEvents: Array<any>) => newsEvents)
 }

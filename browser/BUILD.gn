@@ -278,6 +278,8 @@ source_set("browser_process") {
 
   if (crypto_dot_com_enabled) {
     sources += [
+      "crypto_dot_com/crypto_dot_com_protocol_handler.cc",
+      "crypto_dot_com/crypto_dot_com_protocol_handler.h",
       "crypto_dot_com/crypto_dot_com_service_factory.cc",
       "crypto_dot_com/crypto_dot_com_service_factory.h",
     ]

@@ -109,6 +109,65 @@ class CryptoDotComGetInteractionsFunction :
   ResponseAction Run() override;
 };
 
+class CryptoDotComGetAccountBalancesFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.getAccountBalances", UNKNOWN)
+
+ protected:
+  ~CryptoDotComGetAccountBalancesFunction() override {}
+  ResponseAction Run() override;
+  void OnGetAccountBalancesResult(base::Value balances, bool success);
+};
+
+class CryptoDotComGetClientUrlFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.getClientUrl", UNKNOWN)
+
+ protected:
+  ~CryptoDotComGetClientUrlFunction() override {}
+  ResponseAction Run() override;
+};
+
+class CryptoDotComIsConnectedFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.isConnected", UNKNOWN)
+
+ protected:
+  ~CryptoDotComIsConnectedFunction() override {}
+  ResponseAction Run() override;
+  void OnIsConnectedResult(bool connected);
+};
+
+class CryptoDotComGetNewsEventsFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.getNewsEvents", UNKNOWN)
+
+ protected:
+  ~CryptoDotComGetNewsEventsFunction() override {}
+  ResponseAction Run() override;
+  void OnGetNewsEventsResult(base::Value events, bool success);
+};
+
+class CryptoDotComGetDepositAddressFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.getDepositAddress", UNKNOWN)
+
+ protected:
+  ~CryptoDotComGetDepositAddressFunction() override {}
+  ResponseAction Run() override;
+  void OnGetDepositAddressResult(base::Value address, bool connected);
+};
+
+class CryptoDotComCreateMarketOrderFunction : public ExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("cryptoDotCom.createMarketOrder", UNKNOWN)
+
+ protected:
+  ~CryptoDotComCreateMarketOrderFunction() override {}
+  ResponseAction Run() override;
+  void OnCreateMarketOrderResult(bool success);
+};
+
 }  // namespace api
 }  // namespace extensions
 

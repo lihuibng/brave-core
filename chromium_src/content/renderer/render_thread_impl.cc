@@ -14,6 +14,11 @@
   WebSecurityPolicy::RegisterURLSchemeAsNotAllowingJavascriptURLs( \
       binance_scheme); \
                        \
+  WebString cryptodotcom_scheme(WebString::FromASCII(kCryptoDotComScheme)); \
+  WebSecurityPolicy::RegisterURLSchemeAsDisplayIsolated(cryptodotcom_scheme); \
+  WebSecurityPolicy::RegisterURLSchemeAsNotAllowingJavascriptURLs( \
+      cryptodotcom_scheme); \
+                       \
   WebString gemini_scheme(WebString::FromASCII(kGeminiScheme)); \
   WebSecurityPolicy::RegisterURLSchemeAsDisplayIsolated(gemini_scheme); \
   WebSecurityPolicy::RegisterURLSchemeAsNotAllowingJavascriptURLs( \

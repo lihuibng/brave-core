@@ -40,7 +40,6 @@ const links = {
   'buyTop': 'https://auth.crypto.com/exchange/signup?utm_source=Brave&utm_medium=Trading%20Widget&utm_campaign=Brave%3AWW-en%3ATrading-Widget_MVP_InitialWidgetState_BuyButton_Top&utm_content=MVP_InitialWidgetState_BuyButton_Top',
   'buyBottom': 'https://auth.crypto.com/exchange/signup?utm_source=Brave&utm_medium=Trading%20Widget&utm_campaign=Brave%3AWW-en%3ATrading-Widget_MVP_InitialWidgetState_BuyButton_Bottom&utm_content=MVP_InitialWidgetState_BuyButton_Bottom',
   'buyTopDetail': 'https://auth.crypto.com/exchange/signup?utm_source=Brave&utm_medium=Trading%20Widget&utm_campaign=Brave%3AWW-en%3ATrading-Widget_MVP_CryptoDetails_BuyButton_Top&utm_content=MVP_CryptoDetails_BuyButton_Top',
-  'connectToCrypto': 'https://auth.crypto.com/users/sign_in'
 }
 
 const dynamicBuyLink = (pair: string) => {

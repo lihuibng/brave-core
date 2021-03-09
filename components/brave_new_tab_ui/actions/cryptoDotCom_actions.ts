@@ -20,16 +20,16 @@ export const onCryptoDotComAssetsDetailsRequested = () => {
   return action(types.ALL_ASSETS_DETAILS_REQUESTED)
 }
 
-export const onCryptoDotComAssetsDetailsReceived = (charts: object, pairs: object[]) => {
-  return action(types.ALL_ASSETS_DETAILS_RECEIVED, { charts, pairs })
+export const onCryptoDotComAssetsDetailsReceived = (charts: object, pairs: object[], tickerPrices: object, depositAddress: object) => {
+  return action(types.ALL_ASSETS_DETAILS_RECEIVED, { charts, pairs, tickerPrices, depositAddress })
 }
 
 export const onCryptoDotComRefreshRequested = () => {
   return action(types.ON_REFRESH_DATA)
 }
 
-export const onCryptoDotComRefreshedDataReceived = (tickerPrices: object, losersGainers: object[], charts: object, supportedPairs?: string[]) => {
-  return action(types.REFRESHED_DATA_RECEIVED, { tickerPrices, losersGainers, charts, supportedPairs })
+export const onCryptoDotComRefreshedDataReceived = (tickerPrices: object, losersGainers: object[], charts: object, isConnected: boolean, accountBalances: object, newsEvents: object, supportedPairs?: string[]) => {
+  return action(types.REFRESHED_DATA_RECEIVED, { tickerPrices, losersGainers, charts, isConnected, accountBalances, newsEvents, supportedPairs })
 }
 
 export const onCryptoDotComBuyCrypto = () => action(types.ON_BUY_CRYPTO)
