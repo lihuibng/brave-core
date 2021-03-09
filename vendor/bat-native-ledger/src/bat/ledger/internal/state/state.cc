@@ -166,11 +166,9 @@ void State::SetAutoContributeEnabled(bool enabled) {
 }
 
 bool State::GetAutoContributeEnabled() {
-  // Auto-contribute may not be supported for some regions. If AC is not
-  // supported, then always report AC as disabled.
-  bool ac_supported = ledger_->ledger_client()->GetBooleanOption(
-      option::kAutoContributeSupported);
-  if (!ac_supported)
+  // Auto-contribute is not supported for regions where bitFlyer is the external
+  // wallet provider. If AC is not supported, then always report AC as disabled.
+  if (ledger_->ledger_client()->GetBooleanOption(option::kIsBitflyerRegion))
     return false;
 
   return ledger_->ledger_client()->GetBooleanState(kAutoContributeEnabled);
