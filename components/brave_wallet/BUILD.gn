@@ -28,12 +28,16 @@ source_set("brave_wallet") {
     "eth_response_parser.h",
     "features.cc",
     "features.h",
+    "hd_key.cc",
+    "hd_key.h",
     "pref_names.cc",
     "pref_names.h",
   ]
 
   deps = [
     "//base",
+    "//brave/third_party/bitcoin-core",
+    "//brave/third_party/bitcoin-core:secp256k1",
     "//brave/third_party/ethash",
     "//brave/vendor/bip39wally-core-native:bip39wally-core",
     "//components/keyed_service/content",
