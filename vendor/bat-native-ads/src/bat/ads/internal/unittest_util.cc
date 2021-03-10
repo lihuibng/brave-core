@@ -590,6 +590,27 @@ void MockLoadUserModelForId(const std::unique_ptr<AdsClientMock>& mock) {
       }));
 }
 
+void MockSearchBrowsingHistory(const std::unique_ptr<AdsClientMock>& mock) {
+  ON_CALL(*mock, SearchBrowsingHistory(_, _))
+      .WillByDefault(Invoke([](const std::string& id, LoadCallback callback) {
+        // TODO(Moritz Haller):
+        std::vector<std::string> history;
+        callback(SUCCESS, history);
+
+        // base::FilePath path = GetTestPath();
+        // path = path.AppendASCII("user_models");
+        // path = path.AppendASCII(id);
+
+        // std::string value;
+        // if (!base::ReadFileToString(path, &value)) {
+        //   callback(FAILED, value);
+        //   return;
+        // }
+
+        // callback(SUCCESS, value);
+      }));
+}
+
 void MockLoadResourceForId(const std::unique_ptr<AdsClientMock>& mock) {
   ON_CALL(*mock, LoadResourceForId(_))
       .WillByDefault(Invoke([](const std::string& id) -> std::string {

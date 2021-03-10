@@ -132,6 +132,8 @@ void AdServing::MaybeServeAdForSegments(
       return;
     }
 
+    // TODO(Moritz Haller): Get search history here
+
     FrequencyCapping frequency_capping(subdivision_targeting_, ad_events);
 
     if (!frequency_capping.IsAdAllowed()) {

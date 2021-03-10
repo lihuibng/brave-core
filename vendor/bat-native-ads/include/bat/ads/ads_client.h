@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "bat/ads/ad_notification_info.h"
 #include "bat/ads/export.h"
@@ -25,6 +26,10 @@ using LoadCallback = std::function<void(const Result, const std::string&)>;
 using UrlRequestCallback = std::function<void(const UrlResponse&)>;
 
 using RunDBTransactionCallback = std::function<void(DBCommandResponsePtr)>;
+
+// TODO(Moritz Haller): Use alias?
+using SearchBrowsingHistoryCallback =
+    std::function<void(const Result, const std::vector<std::string>&)>;
 
 class ADS_EXPORT AdsClient {
  public:
@@ -75,6 +80,12 @@ class ADS_EXPORT AdsClient {
   // should be set to |FAILED|. |value| should contain the user model
   virtual void LoadUserModelForId(const std::string& name,
                                   LoadCallback callback) = 0;
+
+  // TODO(Moritz Haller)
+  virtual void SearchBrowsingHistory(
+      const int max_count,
+      const int days_ago,
+      SearchBrowsingHistoryCallback callback) = 0;
 
   // Should return the resource for given |id|
   virtual std::string LoadResourceForId(const std::string& id) = 0;

@@ -147,6 +147,19 @@ void AdsImpl::OnHtmlLoaded(const int32_t tab_id,
   const std::string original_url = redirect_chain.front();
   ad_transfer_->MaybeTransferAd(tab_id, original_url);
   conversions_->MaybeConvert(redirect_chain, html);
+
+  // TODO(Moritz Haller): Move to |ad_notification_serving|
+  const int max_count = 10000;
+  const int days_ago = 180;
+  AdsClientHelper::Get()->SearchBrowsingHistory(
+      max_count, days_ago, [=](const Result result,
+                               const std::vector<std::string> history) {
+    if (result != SUCCESS) {
+      BLOG(1, "Failed to retrieve browsing history search results");
+    }
+
+    BLOG(1, "Successfully retrieved browsing history search results");
+  });
 }
 
 void AdsImpl::OnTextLoaded(const int32_t tab_id,

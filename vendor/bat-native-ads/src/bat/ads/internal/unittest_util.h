@@ -119,6 +119,8 @@ void MockLoad(const std::unique_ptr<AdsClientMock>& mock);
 
 void MockLoadUserModelForId(const std::unique_ptr<AdsClientMock>& mock);
 
+void MockSearchBrowsingHistory(const std::unique_ptr<AdsClientMock>& mock);
+
 void MockLoadResourceForId(const std::unique_ptr<AdsClientMock>& mock);
 
 void MockUrlRequest(const std::unique_ptr<AdsClientMock>& mock,

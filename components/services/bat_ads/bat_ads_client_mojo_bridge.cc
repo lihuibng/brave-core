@@ -161,6 +161,26 @@ void BatAdsClientMojoBridge::LoadUserModelForId(
       base::BindOnce(&OnLoadUserModelForId, std::move(callback)));
 }
 
+void OnSearchBrowsingHistory(
+    const ads::SearchBrowsingHistoryCallback& callback,
+    const int32_t result,
+    const std::vector<std::string>& history) {
+  callback(ToAdsResult(result), history);
+}
+
+void BatAdsClientMojoBridge::SearchBrowsingHistory(
+    const int max_count,
+    const int days_ago,
+    ads::SearchBrowsingHistoryCallback callback) {
+  if (!connected()) {
+    callback(ads::Result::FAILED, {});
+    return;
+  }
+
+  bat_ads_client_->SearchBrowsingHistory(max_count, days_ago,
+      base::BindOnce(&OnSearchBrowsingHistory, std::move(callback)));
+}
+
 void BatAdsClientMojoBridge::RecordP2AEvent(
     const std::string& name,
     const ads::P2AEventType type,
