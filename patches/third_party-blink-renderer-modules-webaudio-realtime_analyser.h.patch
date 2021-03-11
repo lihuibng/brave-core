@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/renderer/modules/webaudio/realtime_analyser.h b/third_party/blink/renderer/modules/webaudio/realtime_analyser.h
-index 6a36b17a72459f280b3d3a6bbf099d8f1529dbb1..516c08b4cdcd227593e5fa23270376d40c46ab24 100644
+index 47c325d0707904ec7d62ffc5dc4f32f03605af59..241e19952b5e7199f126ad4313ea941a784de81e 100644
 --- a/third_party/blink/renderer/modules/webaudio/realtime_analyser.h
 +++ b/third_party/blink/renderer/modules/webaudio/realtime_analyser.h
-@@ -75,6 +75,7 @@ class RealtimeAnalyser final {
+@@ -73,6 +73,7 @@ class RealtimeAnalyser final {
    static const unsigned kMaxFFTSize;
    static const unsigned kInputBufferSize;
  

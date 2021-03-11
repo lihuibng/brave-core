@@ -3,10 +3,10 @@ index e87e311dea47da90b35bac045168e9dbededfa30..4bf5db06229862e8d23797b0ca1013db
 --- a/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
 +++ b/chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
 @@ -1136,6 +1136,7 @@ void ChromeWebUIControllerFactory::GetFaviconForURL(
-
+ 
  // static
  ChromeWebUIControllerFactory* ChromeWebUIControllerFactory::GetInstance() {
 +  BRAVE_CHROME_WEBUI_CONTROLLER_FACTORY
    return base::Singleton<ChromeWebUIControllerFactory>::get();
  }
-
+ 

@@ -8,5 +8,5 @@ index ba03732ca6a8546b7a2f38606facfb645986a373..e1dbdeccf7c005a16b3f93562d9c8a9d
  #endif
 +    BRAVE_ADD_BRAVE_ADS_NOTIFICATION_HANDLER;
    }
-
+ 
    bridge_delegator_ = std::make_unique<NotificationPlatformBridgeDelegator>(

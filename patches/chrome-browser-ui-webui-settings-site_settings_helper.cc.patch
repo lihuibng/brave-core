@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/webui/settings/site_settings_helper.cc b/chrome/browser/ui/webui/settings/site_settings_helper.cc
-index af39c4566688786bb0a71dbec44c1a5dd8fdb435..2b7dd3d629dd0d64419ee94337416125ff9bf464 100644
+index 3980e1826967d598b4de563ecdc55018aed5cfdf..b20d4b2ff2df3b29ee05afbd5a42337d8c726a7e 100644
 --- a/chrome/browser/ui/webui/settings/site_settings_helper.cc
 +++ b/chrome/browser/ui/webui/settings/site_settings_helper.cc
 @@ -149,6 +149,7 @@ const ContentSettingsTypeNameEntry kContentSettingsTypeGroupNames[] = {
