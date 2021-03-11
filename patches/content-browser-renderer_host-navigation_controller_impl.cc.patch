@@ -1,5 +1,5 @@
 diff --git a/content/browser/renderer_host/navigation_controller_impl.cc b/content/browser/renderer_host/navigation_controller_impl.cc
-index b2b48bda88f7f67e4cd90b0f2e1e22a5e07c6a73..6e2b606e187518f331e4d22ac0ca9d8704718bed 100644
+index 7cd8a4d740413a9d1d4687a7a05e98d432ba58c0..f158f47ad386f8847cd4996382377e87ccb9fc63 100644
 --- a/content/browser/renderer_host/navigation_controller_impl.cc
 +++ b/content/browser/renderer_host/navigation_controller_impl.cc
 @@ -3062,16 +3062,17 @@ void NavigationControllerImpl::NavigateWithoutEntry(

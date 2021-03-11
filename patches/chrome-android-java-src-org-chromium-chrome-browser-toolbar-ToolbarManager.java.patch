@@ -1,10 +1,10 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
-index 683a208c2caf54e91e7ed7638d1780dafcb1067c..6aed58f2f4a3bd44d9aa39183ee9e9303921aa6d 100644
+index 99222b947cfaa8574fab77936eafda8f9f540e52..0b9ce31b1ac04edcb6caa68b0b1a8f11d8bc1860 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/ToolbarManager.java
-@@ -451,14 +451,14 @@ public class ToolbarManager implements UrlFocusChangeListener, ThemeColorObserve
+@@ -449,14 +449,14 @@ public class ToolbarManager implements UrlFocusChangeListener, ThemeColorObserve
          ThemeColorProvider overviewModeThemeColorProvider = mAppThemeColorProvider;
- 
+
          Runnable requestFocusRunnable = compositorViewHolder::requestFocus;
 -        mMenuButtonCoordinator = new MenuButtonCoordinator(appMenuCoordinatorSupplier,
 +        mMenuButtonCoordinator = new org.chromium.chrome.browser.toolbar.menu_button.BraveMenuButtonCoordinator(appMenuCoordinatorSupplier,
@@ -19,7 +19,7 @@ index 683a208c2caf54e91e7ed7638d1780dafcb1067c..6aed58f2f4a3bd44d9aa39183ee9e930
                  appMenuCoordinatorSupplier, mControlsVisibilityDelegate, mWindowAndroid,
                  (focus, type)
                          -> setUrlBarFocus(focus, type),
-@@ -881,7 +881,7 @@ public class ToolbarManager implements UrlFocusChangeListener, ThemeColorObserve
+@@ -869,7 +869,7 @@ public class ToolbarManager implements UrlFocusChangeListener, ThemeColorObserve
              OneshotSupplier<StartSurface> startSurfaceSupplier, boolean isGridTabSwitcherEnabled,
              boolean isTabToGtsAnimationEnabled, boolean isStartSurfaceEnabled) {
          // clang-format off

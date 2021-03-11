@@ -1,5 +1,5 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index 964091d4885f69de0fba1713860877b21b573776..71491814a5679aa7df1011f56bece5bdb94a3f03 100644
+index 346102dd3e3cf784603f686c5b242d1c2e04832f..63229b25b3076ecdac7f5a0a4d0cbd287dd436c4 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
 @@ -235,6 +235,7 @@ android_resources("chrome_app_java_resources") {
@@ -10,7 +10,7 @@ index 964091d4885f69de0fba1713860877b21b573776..71491814a5679aa7df1011f56bece5bd
  }
  
  if (enable_vr) {
-@@ -551,6 +552,7 @@ android_library("chrome_java") {
+@@ -555,6 +556,7 @@ android_library("chrome_java") {
    ]
  
    deps += feed_deps
@@ -18,7 +18,7 @@ index 964091d4885f69de0fba1713860877b21b573776..71491814a5679aa7df1011f56bece5bd
  
    srcjar_deps = [
      ":chrome_android_java_enums_srcjar",
-@@ -582,6 +584,7 @@ android_library("chrome_java") {
+@@ -586,6 +588,7 @@ android_library("chrome_java") {
      "//components/ui_metrics:ui_metrics_enums_java",
      "//net:effective_connection_type_java",
    ]
@@ -26,7 +26,7 @@ index 964091d4885f69de0fba1713860877b21b573776..71491814a5679aa7df1011f56bece5bd
  
    # From java_sources.gni.
    sources = chrome_java_sources + [ app_hooks_impl ]
-@@ -705,6 +708,7 @@ group("jni_headers") {
+@@ -709,6 +712,7 @@ group("jni_headers") {
      "//chrome/browser/webauthn/android:jni_headers",
      "//components/media_router/browser/android:jni_headers",
    ]
@@ -34,7 +34,7 @@ index 964091d4885f69de0fba1713860877b21b573776..71491814a5679aa7df1011f56bece5bd
  }
  
  # TODO(crbug.com/1112471): Get this to run cleanly under Python 3.
-@@ -1893,6 +1897,7 @@ if (current_toolchain == default_toolchain) {
+@@ -1904,6 +1908,7 @@ if (current_toolchain == default_toolchain) {
          ":${_variant}_locale_pak_assets",
          ":${_variant}_paks",
        ]

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/BUILD.gn b/chrome/browser/ui/BUILD.gn
-index 8029e1587ade0a591b2611d9e10d5e57986194ec..832f016af6fecd2e4521d04698f02778e09895b7 100644
+index 8638f2d0e9ad5ebf739b4dc639e7abcba2432661..51f3f00a992a10c828fcd95daf19f43af300d1ff 100644
 --- a/chrome/browser/ui/BUILD.gn
 +++ b/chrome/browser/ui/BUILD.gn
-@@ -596,6 +596,7 @@ static_library("ui") {
+@@ -599,6 +599,7 @@ static_library("ui") {
      "//ui/webui/resources/cr_components/customize_themes:mojom",
      "//v8:v8_version",
    ]
@@ -10,7 +10,7 @@ index 8029e1587ade0a591b2611d9e10d5e57986194ec..832f016af6fecd2e4521d04698f02778
  
    # TODO(crbug/925153): Remove this circular dependency.
    allow_circular_includes_from = [
-@@ -3312,10 +3313,13 @@ static_library("ui") {
+@@ -3322,10 +3323,13 @@ static_library("ui") {
        ]
        deps += [ "//google_update" ]
      } else {

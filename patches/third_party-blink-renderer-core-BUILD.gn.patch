@@ -1,5 +1,5 @@
 diff --git a/third_party/blink/renderer/core/BUILD.gn b/third_party/blink/renderer/core/BUILD.gn
-index 9802368529db523ea87c2860bc52feecc48aed23..18855ccf24d2f9a0ea252a84137a2c935b6a6ad0 100644
+index 36427d222523e5f0fa66d3ebb8de35f62124b101..22d70efc13929bd169229cc6e7808acc89f25bd8 100644
 --- a/third_party/blink/renderer/core/BUILD.gn
 +++ b/third_party/blink/renderer/core/BUILD.gn
 @@ -172,6 +172,7 @@ component("core") {
@@ -10,7 +10,7 @@ index 9802368529db523ea87c2860bc52feecc48aed23..18855ccf24d2f9a0ea252a84137a2c93
  
    sources = [
      "core_initializer.cc",
-@@ -270,6 +271,7 @@ component("core") {
+@@ -272,6 +273,7 @@ component("core") {
      "//v8",
    ]
  
