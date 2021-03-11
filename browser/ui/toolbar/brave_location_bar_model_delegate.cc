@@ -7,7 +7,10 @@
 
 #include "base/strings/utf_string_conversions.h"
 #include "brave/common/url_constants.h"
+#include "brave/common/webui_url_constants.h"
 #include "brave/components/brave_wallet/buildflags/buildflags.h"
+#include "brave/components/ipfs/buildflags/buildflags.h"
+#include "brave/components/ipfs/ipfs_constants.h"
 #include "chrome/browser/profiles/profile.h"
 #include "chrome/browser/ui/browser.h"
 #include "extensions/buildflags/buildflags.h"
@@ -31,6 +34,14 @@ void BraveLocationBarModelDelegate::FormattedStringFromURL(const GURL& url,
         base::UTF8ToUTF16("chrome://"),
         base::UTF8ToUTF16("brave://"));
   }
+
+#if BUILDFLAG(IPFS_ENABLED)
+  if (url.SchemeIs("chrome") && url.host() == ipfs::kIPFSScheme) {
+    base::ReplaceFirstSubstringAfterOffset(new_formatted_url, 0,
+                                           base::UTF8ToUTF16(ipfs::kIPFSScheme),
+                                           base::UTF8ToUTF16(kIPFSHost));
+  }
+#endif
 
 #if BUILDFLAG(BRAVE_WALLET_ENABLED)
   if (url.SchemeIs(kChromeExtensionScheme) &&

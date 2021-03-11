@@ -7,7 +7,7 @@
 
 const char kAdblockHost[] = "adblock";
 const char kAdblockJS[] = "brave_adblock.js";
-const char kIPFSHost[] = "ipfs";
+const char kIPFSHost[] = "ipfs-internals";
 const char kWebcompatReporterHost[] = "webcompat";
 const char kRewardsPageHost[] = "rewards";
 const char kRewardsInternalsHost[] = "rewards-internals";
@@ -17,7 +17,7 @@ const char kTipHost[] = "tip";
 const char kBraveNewTabJS[] = "brave_new_tab.js";
 const char kBraveUIRewardsURL[] = "chrome://rewards/";
 const char kBraveUIAdblockURL[] = "chrome://adblock/";
-const char kBraveUIIPFSURL[] = "chrome://ipfs/";
+const char kBraveUIIPFSURL[] = "chrome://ipfs-internals/";
 const char kBraveUIWebcompatReporterURL[] = "chrome://webcompat/";
 const char kBraveUITipURL[] = "chrome://tip/";
 const char kBraveUIWalletURL[] = "chrome://wallet/";

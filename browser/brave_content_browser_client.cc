@@ -87,6 +87,7 @@ using extensions::ChromeContentBrowserClientExtensionsPart;
 #if BUILDFLAG(IPFS_ENABLED)
 #include "brave/browser/ipfs/content_browser_client_helper.h"
 #include "brave/browser/ipfs/ipfs_service_factory.h"
+#include "brave/components/ipfs/ipfs_constants.h"
 #include "brave/components/ipfs/ipfs_navigation_throttle.h"
 #endif
 
@@ -542,7 +543,12 @@ bool BraveContentBrowserClient::HandleURLOverrideRewrite(
     *url = GURL(chrome::kChromeUIWelcomeURL);
     return true;
   }
-
+#if BUILDFLAG(IPFS_ENABLED)
+  if (url->host() == ipfs::kIPFSScheme) {
+    *url = GURL(kBraveUIIPFSURL);
+    return true;
+  }
+#endif
 #if BUILDFLAG(BRAVE_WALLET_ENABLED) && BUILDFLAG(ENABLE_EXTENSIONS)
   // If the Crypto Wallets extension is loaded, then it replaces the WebUI
   Profile* profile = Profile::FromBrowserContext(browser_context);
