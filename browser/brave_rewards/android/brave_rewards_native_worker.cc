@@ -283,8 +283,7 @@ void BraveRewardsNativeWorker::StartProcess(
   }
 }
 
-void BraveRewardsNativeWorker::OnStartProcess(
-    const ledger::type::Result result) {
+void BraveRewardsNativeWorker::OnStartProcess() {
   JNIEnv* env = base::android::AttachCurrentThread();
   Java_BraveRewardsNativeWorker_OnStartProcess(
       env, weak_java_brave_rewards_native_worker_.get(env));
