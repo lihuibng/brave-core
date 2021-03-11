@@ -16,7 +16,7 @@
   if (ExecutionContext* context = node.GetExecutionContext()) {              \
     if (WebContentSettingsClient* settings =                                 \
             brave::GetContentSettingsClientFor(context)) {                   \
-      analyser_.audio_farbling_callback_ =                                   \
+      analyser_->audio_farbling_callback_ =                                   \
           brave::BraveSessionCache::From(*context).GetAudioFarblingCallback( \
               settings);                                                     \
     }                                                                        \
