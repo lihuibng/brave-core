@@ -1,12 +1,12 @@
 diff --git a/chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc b/chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc
-index f384bc355db03f53d107cdab7ab8695e76962fa8..b613a994cd046fd9a1b6bb8992a82df8f1489167 100644
+index 560d94a5c78c05b4468c832806b4cfb26ec4c31a..e28da12b9201289b361927d7cf642947d1f27644 100644
 --- a/chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc
 +++ b/chrome/browser/ui/webui/settings/settings_localized_strings_provider.cc
-@@ -2555,6 +2555,7 @@ void AddLocalizedStrings(content::WebUIDataSource* html_source,
+@@ -2546,6 +2546,7 @@ void AddLocalizedStrings(content::WebUIDataSource* html_source,
    policy_indicator::AddLocalizedStrings(html_source);
    AddSecurityKeysStrings(html_source);
- 
+
 +  BraveAddLocalizedStrings(html_source, profile);
    html_source->UseStringsJs();
  }
- 
+
