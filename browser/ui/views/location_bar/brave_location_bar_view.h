@@ -43,6 +43,9 @@ class BraveLocationBarView : public LocationBarView {
 #endif
   // LocationBarView:
   std::vector<views::View*> GetTrailingViews() override;
+  bool ShowPageInfoDialog() override;
+  ui::ImageModel GetLocationIcon(LocationIconView::Delegate::IconFetchedCallback
+                                 on_icon_fetched) const override;
 
   // views::View:
   gfx::Size CalculatePreferredSize() const override;
@@ -53,6 +56,7 @@ class BraveLocationBarView : public LocationBarView {
 
   SkPath GetFocusRingHighlightPath() const;
   ContentSettingImageView* GetContentSettingsImageViewForTesting(size_t idx);
+  bool ShouldShowIPFSLocationView() const;
 
  private:
   friend class ::BraveActionsContainerTest;

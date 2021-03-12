@@ -401,6 +401,8 @@ source_set("ui") {
       sources += [
         "views/location_bar/ipfs_location_view.cc",
         "views/location_bar/ipfs_location_view.h",
+        "views/ipfs/ipfs_info_bubble_view.cc",
+        "views/ipfs/ipfs_info_bubble_view.h",
       ]
     }
 
