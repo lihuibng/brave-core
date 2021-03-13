@@ -6,6 +6,7 @@
 #include "bat/ads/internal/ad_server/get_catalog_url_request_builder.h"
 
 #include "base/strings/stringprintf.h"
+#include "bat/ads/internal/catalog/catalog.h"
 #include "bat/ads/internal/server/ads_server_util.h"
 
 namespace ads {
@@ -14,7 +15,7 @@ GetCatalogUrlRequestBuilder::GetCatalogUrlRequestBuilder() = default;
 
 GetCatalogUrlRequestBuilder::~GetCatalogUrlRequestBuilder() = default;
 
-// GET /v6/catalog
+// GET /v#/catalog
 
 UrlRequestPtr GetCatalogUrlRequestBuilder::Build() {
   UrlRequestPtr url_request = UrlRequest::New();
@@ -27,7 +28,8 @@ UrlRequestPtr GetCatalogUrlRequestBuilder::Build() {
 ///////////////////////////////////////////////////////////////////////////////
 
 std::string GetCatalogUrlRequestBuilder::BuildUrl() const {
-  return base::StringPrintf("%s/v6/catalog", server::GetHost().c_str());
+  return base::StringPrintf("%s/v%d/catalog", server::GetHost().c_str(),
+         kCurrentCatalogVersion);
 }
 
 }  // namespace ads
