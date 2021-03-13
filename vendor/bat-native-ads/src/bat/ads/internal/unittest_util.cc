@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/unittest_util.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <limits>
 #include <vector>

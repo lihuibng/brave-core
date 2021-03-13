@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/base64_util.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include "base/base64.h"
 #include "testing/gtest/include/gtest/gtest.h"

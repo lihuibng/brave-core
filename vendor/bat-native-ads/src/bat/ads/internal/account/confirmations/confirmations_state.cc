@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/account/confirmations/confirmations_state.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <utility>
 

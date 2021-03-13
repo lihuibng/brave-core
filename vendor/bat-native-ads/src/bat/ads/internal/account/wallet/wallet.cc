@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/account/wallet/wallet.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <vector>
 

@@ -8,7 +8,7 @@
 
 #include "bat/ads/ads_client.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <string>
 

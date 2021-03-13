@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/frequency_capping/exclusion_rules/per_day_frequency_cap.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <deque>
 

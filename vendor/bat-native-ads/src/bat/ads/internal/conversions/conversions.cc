@@ -5,7 +5,7 @@
 
 #include "bat/ads/internal/conversions/conversions.h"
 
-#include <stdint.h>
+#include <cstdint>
 
 #include <algorithm>
 #include <functional>
