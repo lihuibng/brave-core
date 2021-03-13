@@ -401,6 +401,9 @@ class LEDGER_EXPORT Ledger {
   virtual void LinkBraveWallet(const std::string& destination_payment_id,
                                PostSuggestionsClaimCallback callback) = 0;
 
+  virtual void GetDrainID(const std::string& drain_id,
+                          ledger::GetDrainCallback callback) = 0;
+
   virtual void GetTransferableAmount(
       GetTransferableAmountCallback callback) = 0;
 };
