@@ -6,6 +6,7 @@ const fs = require('fs-extra')
 const crypto = require('crypto')
 const l10nUtil = require('./l10nUtil')
 const Log = require('./sync/logging')
+const os = require('os')
 
 const fixPywin32 = (options = {}) => {
   if (process.platform !== 'win32') {
@@ -61,10 +62,14 @@ async function applyPatches() {
 
 const util = {
 
+  runProcess: (cmd, args = [], options = {}) => {
+    Log.command(options.cwd, cmd, args)
+    return spawnSync(cmd, args, options)
+  },
+
   run: (cmd, args = [], options = {}) => {
     const { continueOnFail, ...cmdOptions } = options
-    Log.command(cmdOptions.cwd, cmd, args)
-    const prog = spawnSync(cmd, args, cmdOptions)
+    const prog = util.runProcess(cmd, args, cmdOptions)
     if (prog.status !== 0) {
       if (!continueOnFail) {
         console.log(prog.stdout && prog.stdout.toString())
@@ -460,9 +465,26 @@ const util = {
     const args = util.buildArgsToString(config.buildArgs())
     util.run('gn', ['gen', config.outputDir, '--args="' + args + '"'], options)
 
+    if (config.useGoma()) {
+      const gomaLoginInfo = util.runProcess('goma_auth', ['info'], options)
+      if (gomaLoginInfo.status !== 0) {
+        console.log('Login required for using Goma. This is only needed once')
+        util.run('goma_auth', ['login'], options)
+      }
+      util.run('goma_ctl', ['ensure_start'], options)
+    }
+
+    const cpuCount = os.cpus().length
+    let jValue = cpuCount + 2
+    if (config.useGoma()) {
+      const coreMultiplier = 40
+      jValue = coreMultiplier * cpuCount
+    }
+
     let ninjaOpts = [
       '-C', config.outputDir, config.buildTarget,
       '-k', num_compile_failure,
+      '-j', jValue,
       ...config.extraNinjaOpts
     ]
     util.run('ninja', ninjaOpts, options)

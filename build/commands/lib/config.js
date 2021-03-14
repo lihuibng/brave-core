@@ -132,6 +132,12 @@ const Config = function () {
   this.braveAndroidKeystorePassword = getNPMConfig(['brave_android_keystore_password'])
   this.braveAndroidKeyPassword = getNPMConfig(['brave_android_key_password'])
   this.braveVariationsServerUrl = getNPMConfig(['brave_variations_server_url']) || ''
+
+  this.gomaHost = null
+}
+
+Config.prototype.useGoma = function () {
+  return this.gomaHost !== null
 }
 
 Config.prototype.isOfficialBuild = function () {
@@ -640,6 +646,10 @@ Config.prototype.update = function (options) {
       opts.push(value)
     })
   }
+
+  if (options.experimental_use_goma === true) {
+    this.gomaHost = 'goma-chromite.engflow.com'
+  }
 }
 
 Config.prototype.getCachePath = function () {
@@ -685,6 +695,11 @@ Object.defineProperty(Config.prototype, 'defaultOptions', {
 
     if (process.platform === 'linux') {
       env.LLVM_DOWNLOAD_GOLD_PLUGIN = '1'
+    }
+
+    if (this.useGoma()) {
+      env.GOMA_SERVER_HOST = this.gomaHost
+      env.CC_WRAPPER = path.join(this.depotToolsDir, '.cipd_bin', 'gomacc');
     }
 
     return {
